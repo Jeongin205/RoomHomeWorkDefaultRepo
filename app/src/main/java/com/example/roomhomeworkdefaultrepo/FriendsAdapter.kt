@@ -1,12 +1,13 @@
 package com.example.roomhomeworkdefaultrepo
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FriendsAdapter(val friendsList: List<Friends>) :
+class FriendsAdapter(val friendsList: List<Friends>, private val onClick : (friends: Friends) -> Unit) :
     RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder>() {
     inner class FriendsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val number = itemView.findViewById<TextView>(R.id.number_text_view)
@@ -24,6 +25,9 @@ class FriendsAdapter(val friendsList: List<Friends>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_friends, parent, false)
+        view.setOnClickListener{
+            onClick.invoke(friendsList[FriendsViewHolder(view).position+1])
+        }
         return FriendsViewHolder(view)
     }
 
