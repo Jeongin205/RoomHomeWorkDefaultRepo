@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Friends(
-    @PrimaryKey(autoGenerate = true)
-    val number: Int,
+    @PrimaryKey(autoGenerate = true) val number: Int,
     var name: String?,
     var email: String?,
     var mbti: String?
